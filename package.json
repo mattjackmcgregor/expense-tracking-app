@@ -9,7 +9,9 @@
     "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "build:dev": "webpack",
     "build:prod": "webpack -p --env production",
-    "dev-server": "webpack-dev-server"
+    "dev-server": "webpack-dev-server",
+    "start": "server/server.js",
+    "heroku-postbuild": "yarn run build:prod"
   },
   "author": "mattjackmcgregor",
   "license": "ISC",
