@@ -11,16 +11,6 @@ import getVisibleExpenses from './selectors/expenses'
 
 const store = configureStore()
 
-store.subscribe(() => {
-  const state = store.getState()
-  const visibleExpenses = getVisibleExpenses(state.expenses, state.filters)
-  console.log(visibleExpenses)
-})
-
-const waterBill = store.dispatch(addExpense({description:'Water Bill', note: 'flat bill', amount: 60, createdAt: 2500}))
-const powerBill = store.dispatch(addExpense({description:'Power Bill', note: 'flat bill', amount: 400, createdAt: 40000}))
-const rent = store.dispatch(addExpense({description:'rent', note: 'flat bill', amount: 1000, createdAt: 20}))
-
 
 // store.dispatch(setTextFilter('water'))
 
