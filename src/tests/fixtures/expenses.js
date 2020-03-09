@@ -3,7 +3,7 @@ import moment from 'moment'
 export default [{
   id: '1',
   description: 'food',
-  amount: 100,
+  amount: 10000,
   note: '',
   createdAt: 0
 }, {
@@ -15,7 +15,7 @@ export default [{
 }, {
   id: '3',
   description: 'power',
-  amount: 200,
+  amount: 20000,
   note: '',
   createdAt: moment(0).add(10, 'days').valueOf()
 }]
