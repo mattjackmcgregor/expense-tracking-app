@@ -71,10 +71,7 @@ test('should edit expense in database', (done) => {
     })
     return database.ref(`expenses/${id}`).once('value')
   }).then((snapshot) => {
-    expect(snapshot.val()).toEqual({
-      createdAt: 0,
-      ...updates
-    })
+    expect(snapshot.val()).toMatchObject(updates)
     done()
   })
 })
