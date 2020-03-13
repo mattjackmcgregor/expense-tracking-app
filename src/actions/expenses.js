@@ -51,3 +51,23 @@ export const setExpenses = (expenses) => ({
   type: "SET_EXPENSES",
   expenses
 })
+
+//START_SET_EXPENSE
+export const startSetExpense = () => {
+  return(dispatch) => {
+    return database.ref('expenses').once('value').then((snapshot) => {
+      const expenses = []
+      snapshot.forEach((childSnapshot) => {
+        expenses.push({
+          id: childSnapshot.key,
+          ...childSnapshot.val()
+        })        
+      })
+      
+      return dispatch(setExpenses(expenses))
+    })
+    .catch((e) => {
+      console.log('fetching failed', e)
+    })
+  }
+}

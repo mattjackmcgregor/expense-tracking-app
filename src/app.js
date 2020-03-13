@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import {Provider} from 'react-redux'
 import AppRouter from './routes/AppRouter'
 import configureStore from './store/configureStore'
-import {addExpense, removeExpense, editExpense} from './actions/expenses'
+import {startSetExpense} from './actions/expenses'
 import {setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate} from './actions/filters'
 import getVisibleExpenses from './selectors/expenses'
 import './styles/styles.scss'
@@ -21,7 +21,10 @@ const jsx = (
   <Provider store={store}>
     <AppRouter />
   </Provider>
-  )
+)
 
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'))
 
-ReactDOM.render(jsx, document.getElementById('app'))
+store.dispatch(startSetExpense()).then(() =>{
+  ReactDOM.render(jsx, document.getElementById('app'))
+})
