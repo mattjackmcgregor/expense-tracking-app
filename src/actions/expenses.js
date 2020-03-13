@@ -63,11 +63,22 @@ export const startSetExpense = () => {
           ...childSnapshot.val()
         })        
       })
-      
       return dispatch(setExpenses(expenses))
     })
     .catch((e) => {
       console.log('fetching failed', e)
+    })
+  }
+}
+//START_REMOVE_EXPENSE
+export const startRemoveExpense = ({id} = {}) => {
+  return(dispatch) => {
+    console.log(id)
+    return database.ref(`expenses/${id}`).remove().then(() => {
+      dispatch(removeExpense({id}))
+      console.log(`removed expense id : ${id} from database`)
+    }).catch((e) => {
+      console.log('error', e)
     })
   }
 }

@@ -1,8 +1,9 @@
-import {addExpense, removeExpense, editExpense, startAddExpense, setExpenses, startSetExpense} from '../../actions/expenses'
+import {addExpense, removeExpense, editExpense, startAddExpense, setExpenses, startSetExpense, startRemoveExpense} from '../../actions/expenses'
 import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import database from '../../firebase/firebase';
 import expenses from '../fixtures/expenses'
+import { remove } from 'jest-util/build/preRunMessage';
 
 const createMockStore = configureMockStore([thunk])
 
@@ -15,6 +16,8 @@ const createMockStore = configureMockStore([thunk])
     database.ref('expenses').set(expenseData).then(() => done())
   })
 
+
+//remove expense
 test('sets up removeExpense action obj', () => {
   const action = removeExpense({id: '123abc'})
   expect(action).toEqual({
@@ -22,7 +25,24 @@ test('sets up removeExpense action obj', () => {
     id: '123abc'
   })
 })
+test('should remove expense from database', (done) => {
+  const store = createMockStore({})
+  const expenseData = expenses[0].id
+  store.dispatch(startRemoveExpense({id: expenseData})).then(() =>{
+    const actions = store.getActions()
+    console.log(actions)
+    expect(actions[0]).toEqual({
+      type: "REMOVE_EXPENSE",
+      id: expenseData
+    })
+    return database.ref(`expenses/${expenseData}`).once('value')
+  }).then((snapshot) => {
+    expect(snapshot.val()).toBe(null) //or could use toBeFalsy()
+    done()
+  })
+})
 
+//edit expense
 test('sets up editExpense action obj', () => {
   const action = editExpense('123abc', {note: 'test note'}) //make sure to observe parameters properly and when it is an object
   expect(action).toEqual({
@@ -35,6 +55,8 @@ test('sets up editExpense action obj', () => {
   })
 })
 
+
+//add expense
 test('sets up addExpense action obj', () => {
   const expense = {
     description: 'test description',
@@ -101,6 +123,7 @@ test('sets up addExpense action obj', () => {
   
 // })
 
+//set expense
 test('sets up setExpense action', () => {
   const action = setExpenses(expenses)
   expect(action).toEqual({
@@ -119,6 +142,7 @@ test('should fetch data from datbase,', (done) => {
     done()
   })
 })
+
 
 // test('sets up addExpense action obj with defaults', () => {
 //   const action = addExpense()
