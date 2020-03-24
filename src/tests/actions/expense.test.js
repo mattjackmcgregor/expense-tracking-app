@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import database from '../../firebase/firebase';
 import expenses from '../fixtures/expenses'
-import { remove } from 'jest-util/build/preRunMessage';
+
 
 const createMockStore = configureMockStore([thunk])
 
