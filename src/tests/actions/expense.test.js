@@ -6,15 +6,16 @@ import expenses from '../fixtures/expenses'
 
 
 const createMockStore = configureMockStore([thunk])
+const uid = 'mockId'
+const defaultAuth = {auth: {uid}}
 
-
-  beforeEach((done) => {
-    const expenseData = {}
-    expenses.forEach(({id, description, amount, createdAt, note}) => {
-      expenseData[id] = {description, amount, createdAt, note}
-    })
-    database.ref('expenses').set(expenseData).then(() => done())
+beforeEach((done) => {
+  const expenseData = {}
+  expenses.forEach(({id, description, amount, createdAt, note}) => {
+    expenseData[id] = {description, amount, createdAt, note}
   })
+  database.ref('users/${uid}/expenses').set(expenseData).then(() => done())
+})
 
 
 //remove expense
@@ -26,7 +27,7 @@ test('sets up removeExpense action obj', () => {
   })
 })
 test('should remove expense from database', (done) => {
-  const store = createMockStore({})
+  const store = createMockStore(defaultAuth)
   const expenseData = expenses[0].id
   store.dispatch(startRemoveExpense({id: expenseData})).then(() =>{
     const actions = store.getActions()
@@ -35,7 +36,7 @@ test('should remove expense from database', (done) => {
       type: "REMOVE_EXPENSE",
       id: expenseData
     })
-    return database.ref(`expenses/${expenseData}`).once('value')
+    return database.ref(`users/${uid}/expenses/${expenseData}`).once('value')
   }).then((snapshot) => {
     expect(snapshot.val()).toBe(null) //or could use toBeFalsy()
     done()
@@ -55,7 +56,7 @@ test('sets up editExpense action obj', () => {
   })
 })
 test('should edit expense in database', (done) => {
-  const store = createMockStore({})
+  const store = createMockStore(defaultAuth)
   const id = expenses[0].id
   const updates = {
     description: 'edited description',
@@ -69,7 +70,7 @@ test('should edit expense in database', (done) => {
       id,
       updates
     })
-    return database.ref(`expenses/${id}`).once('value')
+    return database.ref(`users/${uid}/expenses/${id}`).once('value')
   }).then((snapshot) => {
     expect(snapshot.val()).toMatchObject(updates)
     done()
@@ -154,7 +155,7 @@ test('sets up setExpense action', () => {
   })
 })
 test('should fetch data from datbase,', (done) => {
-  const store = createMockStore({})
+  const store = createMockStore(defaultAuth)
   store.dispatch(startSetExpenses()).then(() => {
     const actions = store.getActions()
     expect(actions[0]).toEqual({
