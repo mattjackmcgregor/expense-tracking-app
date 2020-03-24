@@ -102,6 +102,7 @@ test('sets up addExpense action obj', () => {
 //     amount: 3000,
 //     note: 'This one is better',
 //     createdAt: 1000
+    
 //   };
 //   store.dispatch(startAddExpense(expenseData)).then(() => {
 //     const actions = store.getActions();
@@ -112,7 +113,7 @@ test('sets up addExpense action obj', () => {
 //         ...expenseData
 //       }
 //     });
-//     return database.ref(`expenses/${actions[0].expense.description}`).once('value');
+//     return database.ref(`expenses/${actions[0].expense.id}`).once('value');
 //   }).then((snapshot) => {
 //     expect(snapshot.val()).toEqual(expenseData);
 //     done();
@@ -136,7 +137,7 @@ test('sets up addExpense action obj', () => {
 //         ...expenseDataDefaults
 //       }
 //     })
-//     return database.ref(`expenses/${actions[0].expense.description}`).once('value')
+//     return database.ref(`expenses/${actions[0].expense.id}`).once('value')
 //   }).then((snapshot) => {
 //     expect(snapshot.val()).toEqual(expenseDataDefaults)
 //     done()
