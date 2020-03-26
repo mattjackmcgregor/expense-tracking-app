@@ -5,7 +5,7 @@ import getVisibleExpenses from '../selectors/expenses'
 
 
 export const ExpenseList = (props) => (
-  <div>
+  <div className='content-container'>
     {
       props.expenses.length === 0 ? (
         <p>No expenses</p>
