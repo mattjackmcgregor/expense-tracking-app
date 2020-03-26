@@ -5,26 +5,33 @@ import getVisibleExpenses from '../selectors/expenses'
 
 
 export const ExpenseList = (props) => (
-  <div>
-    {
-      props.expenses.length === 0 ? (
-        <p>No expenses</p>
-      ) : (
-        props.expenses.map((expense) => (
-          // <ExpenseListItem 
-          //   key={expense.id}
-          //   description={expense.description}
-          //   amount={expense.amount}
-          //   createdAt={expense.createdAt}
-          // />
-    
-          //betterway using spread opperator to destruct it
-          <ExpenseListItem key={expense.id} {...expense} />
-        ))
-      )
-    }
-    
-    
+  <div className='content-container'>
+    <div className='list-header'>
+    <div className='show-on-mobile'>Expenses</div>
+    <div className='show-on-desktop'>Expense</div>
+    <div className='show-on-desktop'>Amount</div>
+    </div>
+    <div className='list-body'>
+      {
+        props.expenses.length === 0 ? (
+          <div className='list-item list-item--message'>
+          <span>No Expenses</span>
+          </div>
+        ) : (
+          props.expenses.map((expense) => (
+            // <ExpenseListItem 
+            //   key={expense.id}
+            //   description={expense.description}
+            //   amount={expense.amount}
+            //   createdAt={expense.createdAt}
+            // />
+      
+            //betterway using spread opperator to destruct it
+            <ExpenseListItem key={expense.id} {...expense} />
+          ))
+        )
+      }
+    </div>
   </div>
 )
 

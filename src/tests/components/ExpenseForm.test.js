@@ -32,7 +32,7 @@ test('should render new decription change', () => {
 test('should render new note change', () => {
   const value = 'new note'
   const wrapper = shallow(<ExpenseForm />)
-  wrapper.find('input').at(2).simulate('change', {
+  wrapper.find('textarea').simulate('change', {
     target: {value}
   })
   expect(wrapper.state('note')).toBe(value)
