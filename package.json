@@ -1,6 +1,9 @@
 {
   "name": "expensify",
   "version": "1.0.0",
+  "engines": {
+    "node": "12.x"
+  },
   "description": "budgeting app / app for keeping record of my expenses eg. reciepts/ gas/ meeting cost etc.",
   "main": "index.js",
   "scripts": {
