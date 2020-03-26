@@ -2,9 +2,8 @@
 
 exports[`should render header component 1`] = `
 <div>
-  this is the ExpenseDashboard
-  <Connect(ExpenseListFilters) />
   <Connect(ExpensesSummary) />
+  <Connect(ExpenseListFilters) />
   <Connect(ExpenseList) />
 </div>
 `;
