@@ -11,6 +11,16 @@
     font-weight: 700;
   }
 }
+.page-header__subtitle {
+  margin-top: 0;
+  font-weight: 100;
+  font-style: italic;
+  font-size: 1.2rem;
+
+}
+.page-header__content {
+  display: flex;
+}
 
 .page-header__actions {
   margin-top: $s-size;

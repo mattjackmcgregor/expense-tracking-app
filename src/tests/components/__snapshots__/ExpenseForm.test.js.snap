@@ -118,7 +118,7 @@ exports[`should not render amount change 1`] = `
   <textarea
     className="input-textarea"
     onChange={[Function]}
-    placeholder="add a note for your expense (optional"
+    placeholder="add a note for your expense (optional)"
     type="text"
     value=""
   />
@@ -250,7 +250,7 @@ exports[`should render error message for invalid form submission 1`] = `
   <textarea
     className="input-textarea"
     onChange={[Function]}
-    placeholder="add a note for your expense (optional"
+    placeholder="add a note for your expense (optional)"
     type="text"
     value=""
   />
@@ -387,7 +387,7 @@ exports[`should render error message for invalid form submission 2`] = `
   <textarea
     className="input-textarea"
     onChange={[Function]}
-    placeholder="add a note for your expense (optional"
+    placeholder="add a note for your expense (optional)"
     type="text"
     value=""
   />
@@ -519,7 +519,7 @@ exports[`should render expenseForm component properly 1`] = `
   <textarea
     className="input-textarea"
     onChange={[Function]}
-    placeholder="add a note for your expense (optional"
+    placeholder="add a note for your expense (optional)"
     type="text"
     value=""
   />
@@ -651,7 +651,7 @@ exports[`should render expenseForm with data 1`] = `
   <textarea
     className="input-textarea"
     onChange={[Function]}
-    placeholder="add a note for your expense (optional"
+    placeholder="add a note for your expense (optional)"
     type="text"
     value=""
   />
